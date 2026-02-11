@@ -306,7 +306,7 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	// Serve static files
-	fs := http.FileServer(http.Dir("../"))
+	fs := http.FileServer(http.Dir("./"))
 	http.Handle("/", fs)
 
 	// WebSocket endpoint
