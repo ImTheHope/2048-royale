@@ -870,12 +870,8 @@ function closeOnlineModal() {
 function connectWS(callback) {
     // ──────────────────────────────────────────────────────────
     // ⚡ CHANGE THIS to your Railway/Render/Fly.io URL in prod
-    const PROD_WS_URL = '2048-royale-production-cf79.up.railway.app';  // ex: 'wss://2048-royale.up.railway.app/ws'
-    // ──────────────────────────────────────────────────────────
-    const isLocal = ['localhost','127.0.0.1'].includes(window.location.hostname);
-    const url = (!isLocal && PROD_WS_URL)
-        ? PROD_WS_URL
-        : `ws://${window.location.hostname || 'localhost'}:8080/ws`;
+    const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const url = `${proto}//${window.location.host}/ws`;
     document.getElementById('wsStatus').textContent = 'Connexion...';
     document.getElementById('wsError').textContent = '';
 
