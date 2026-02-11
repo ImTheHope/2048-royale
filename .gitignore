@@ -1,0 +1,14 @@
+# Go
+server/2048-royale-server
+server/server
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Vercel
+.vercel/
