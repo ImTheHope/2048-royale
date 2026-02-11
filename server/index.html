@@ -21,7 +21,6 @@
             linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
             background-size:50px 50px;pointer-events:none;z-index:0}
 
-        /* ─── MENU ─── */
         #menuScreen{position:relative;z-index:2;display:flex;flex-direction:column;
             align-items:center;justify-content:center;min-height:100vh;gap:32px;padding:20px}
         .menu-title{font-size:4rem;font-weight:900;letter-spacing:-2px;
@@ -43,7 +42,6 @@
         .mode-card.online{opacity:.5;pointer-events:auto}
         .mode-card.online .mode-desc::after{content:" (nécessite le serveur Go)";color:var(--danger)}
 
-        /* ─── GAME SCREEN ─── */
         #gameScreen{display:none;position:relative;z-index:2;width:100%;
             flex-direction:column;align-items:center;padding:12px;gap:12px}
         #gameScreen.active{display:flex}
@@ -63,8 +61,9 @@
         .btn-back:hover{border-color:var(--dim);color:var(--text)}
         .btn-accent{background:var(--accent);color:var(--bg)}
         .btn-accent:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--accent-glow)}
+        .btn-danger{background:var(--danger);color:#fff}
+        .btn-danger:hover{opacity:.9}
 
-        /* ─── ARENA ─── */
         .arena{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;width:100%;max-width:960px}
         .player-zone{display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;min-width:300px;max-width:480px}
         .player-header{display:flex;justify-content:space-between;align-items:center;width:100%;padding:0 4px}
@@ -72,37 +71,26 @@
         .player-name.p1{color:var(--p1)}.player-name.p2{color:var(--p2)}
         .player-score{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--accent)}
         .game-wrapper{position:relative;width:100%;aspect-ratio:1;border-radius:14px;
-            overflow:hidden;border:1px solid var(--border);
-            box-shadow:0 0 30px rgba(0,0,0,.4)}
+            overflow:hidden;border:1px solid var(--border);box-shadow:0 0 30px rgba(0,0,0,.4)}
         .game-wrapper.winner{border-color:var(--success);box-shadow:0 0 30px rgba(38,222,129,.2)}
         .game-wrapper.loser{opacity:.5}
         canvas{width:100%;height:100%;display:block;touch-action:none}
-
-        .player-controls{font-size:.65rem;color:var(--dim);font-weight:600;
-            text-transform:uppercase;letter-spacing:1px}
+        .player-controls{font-size:.65rem;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:1px}
         .player-controls kbd{display:inline-block;background:var(--card);border:1px solid var(--border);
             border-radius:5px;padding:2px 6px;font-family:'JetBrains Mono',monospace;font-size:.6rem;margin:0 1px}
 
-        /* ─── OVERLAYS ─── */
         .overlay{position:absolute;inset:0;background:rgba(8,8,13,.88);backdrop-filter:blur(6px);
             display:flex;flex-direction:column;align-items:center;justify-content:center;
             gap:12px;opacity:0;pointer-events:none;transition:opacity .4s ease;border-radius:14px;z-index:5}
         .overlay.active{opacity:1;pointer-events:all}
         .overlay h2{font-size:2rem;font-weight:900}
-        .overlay h2.win{background:linear-gradient(135deg,var(--accent),#ff6b6b);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .overlay h2.lose{color:var(--danger)}
-        .overlay .sub{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--dim)}
 
-        /* ─── COUNTDOWN ─── */
         .countdown{position:fixed;inset:0;z-index:100;display:flex;align-items:center;
             justify-content:center;background:rgba(8,8,13,.92);backdrop-filter:blur(10px)}
         .countdown.hidden{display:none}
-        .countdown-num{font-size:8rem;font-weight:900;color:var(--accent);
-            animation:countPulse .8s ease infinite}
+        .countdown-num{font-size:8rem;font-weight:900;color:var(--accent);animation:countPulse .8s ease infinite}
         @keyframes countPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.2);opacity:.7}}
 
-        /* ─── RESULT BANNER ─── */
         .result-banner{display:none;width:100%;max-width:960px;padding:16px 24px;
             border-radius:12px;text-align:center;font-weight:800;font-size:1.1rem;gap:12px;
             flex-direction:column;align-items:center}
@@ -116,13 +104,13 @@
         .result-banner.solo-win{background:linear-gradient(135deg,rgba(38,222,129,.15),rgba(38,222,129,.05));
             border:1px solid rgba(38,222,129,.3);color:var(--success)}
 
-        /* ─── ONLINE MODAL ─── */
         .modal-overlay{position:fixed;inset:0;z-index:50;background:rgba(8,8,13,.9);
             backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center}
         .modal-overlay.hidden{display:none}
         .modal{background:var(--card);border:1px solid var(--border);border-radius:16px;
             padding:32px;max-width:380px;width:90%;display:flex;flex-direction:column;gap:16px;align-items:center}
         .modal h3{font-size:1.2rem;font-weight:800}
+        .modal p{font-size:.85rem;color:var(--dim);line-height:1.5;text-align:center}
         .modal input{width:100%;padding:10px 14px;border-radius:8px;border:1px solid var(--border);
             background:var(--bg2);color:var(--text);font-family:'JetBrains Mono',monospace;
             font-size:1rem;text-align:center;letter-spacing:4px;outline:none}
@@ -133,19 +121,22 @@
         .modal .status{font-size:.8rem;color:var(--dim)}
         .modal .error{font-size:.8rem;color:var(--danger)}
 
+        .restart-waiting{font-size:.8rem;color:var(--accent);display:none;text-align:center;
+            width:100%;max-width:960px;padding:8px;animation:pulse 1.5s ease infinite}
+        .restart-waiting.active{display:block}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
         @media(max-width:680px){
             .arena{flex-direction:column;align-items:center}
             .player-zone{max-width:360px;min-width:unset}
             .player-controls{display:none}
         }
-
         @keyframes scorePop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
         .score-pop{animation:scorePop .2s ease}
     </style>
 </head>
 <body>
 
-<!-- ═══ MENU ═══ -->
 <div id="menuScreen">
     <div class="menu-title">2048</div>
     <div class="menu-sub">Royale</div>
@@ -168,32 +159,28 @@
     </div>
 </div>
 
-<!-- ═══ GAME ═══ -->
 <div id="gameScreen">
     <div class="top-bar">
         <div class="top-left">
             <div class="logo-sm"><h1>2048</h1><span>Royale</span></div>
         </div>
         <div style="display:flex;gap:8px">
-            <button class="btn btn-back" onclick="restartMatch()">↻ Restart</button>
+            <button class="btn btn-back" onclick="requestRestart()">↻ Restart</button>
             <button class="btn btn-back" onclick="backToMenu()">← Menu</button>
         </div>
     </div>
-
     <div class="result-banner" id="resultBanner">
         <span id="resultText"></span>
-        <button class="btn btn-accent" onclick="restartMatch()">Rejouer</button>
+        <button class="btn btn-accent" onclick="requestRestart()">Rejouer</button>
     </div>
-
+    <div class="restart-waiting" id="restartWaiting">⏳ En attente de confirmation de l'adversaire...</div>
     <div class="arena" id="arena"></div>
 </div>
 
-<!-- ═══ COUNTDOWN ═══ -->
 <div class="countdown hidden" id="countdown">
     <div class="countdown-num" id="countdownNum">3</div>
 </div>
 
-<!-- ═══ ONLINE MODAL ═══ -->
 <div class="modal-overlay hidden" id="onlineModal">
     <div class="modal">
         <h3>🌐 Multijoueur en ligne</h3>
@@ -208,459 +195,315 @@
     </div>
 </div>
 
+<div class="modal-overlay hidden" id="restartModal">
+    <div class="modal">
+        <h3>↻ Restart demandé</h3>
+        <p>L'adversaire veut recommencer la partie. Tu acceptes ?</p>
+        <div class="modal-btns">
+            <button class="btn btn-accent" onclick="acceptRestart()">Oui</button>
+            <button class="btn btn-danger" onclick="rejectRestart()">Non</button>
+        </div>
+    </div>
+</div>
+
 <script>
-// ═══════════════════════════════════════════════════════
-//  TILE STYLES
-// ═══════════════════════════════════════════════════════
-const TS = {
-    0:{bg:'#1a1a24',fg:'#1a1a24',fs:1},
-    2:{bg:'#2a2a3a',fg:'#e8e8f0',fs:1},
-    4:{bg:'#3a3a4f',fg:'#e8e8f0',fs:1},
-    8:{bg:'#f7b731',fg:'#0a0a0f',fs:1},
-    16:{bg:'#f7a031',fg:'#0a0a0f',fs:1},
-    32:{bg:'#fc5c65',fg:'#fff',fs:1},
-    64:{bg:'#e74c3c',fg:'#fff',fs:1},
-    128:{bg:'#f7d731',fg:'#0a0a0f',fs:.82},
-    256:{bg:'#f7cf31',fg:'#0a0a0f',fs:.82},
-    512:{bg:'#f7c731',fg:'#0a0a0f',fs:.82},
-    1024:{bg:'#f7bf31',fg:'#0a0a0f',fs:.68},
-    2048:{bg:'#26de81',fg:'#0a0a0f',fs:.68},
-    4096:{bg:'#a55eea',fg:'#fff',fs:.68},
-    8192:{bg:'#8854d0',fg:'#fff',fs:.68},
-};
+const TS={0:{bg:'#1a1a24',fg:'#1a1a24',fs:1},2:{bg:'#2a2a3a',fg:'#e8e8f0',fs:1},4:{bg:'#3a3a4f',fg:'#e8e8f0',fs:1},8:{bg:'#f7b731',fg:'#0a0a0f',fs:1},16:{bg:'#f7a031',fg:'#0a0a0f',fs:1},32:{bg:'#fc5c65',fg:'#fff',fs:1},64:{bg:'#e74c3c',fg:'#fff',fs:1},128:{bg:'#f7d731',fg:'#0a0a0f',fs:.82},256:{bg:'#f7cf31',fg:'#0a0a0f',fs:.82},512:{bg:'#f7c731',fg:'#0a0a0f',fs:.82},1024:{bg:'#f7bf31',fg:'#0a0a0f',fs:.68},2048:{bg:'#26de81',fg:'#0a0a0f',fs:.68},4096:{bg:'#a55eea',fg:'#fff',fs:.68},8192:{bg:'#8854d0',fg:'#fff',fs:.68}};
 function ts(v){return TS[v]||{bg:'#6c5ce7',fg:'#fff',fs:.55}}
 
-// ═══════════════════════════════════════════════════════
-//  TILE OBJECT (tracks identity + animation)
-// ═══════════════════════════════════════════════════════
-let globalTileId = 0;
-class Tile {
-    constructor(r, c, value) {
-        this.id = ++globalTileId;
-        this.value = value;
-        this.row = r;
-        this.col = c;
-        // Animation state
-        this.fromRow = r;
-        this.fromCol = c;
-        this.scale = 0;       // 0→1 for spawn
-        this.mergeScale = 1;   // pop on merge
-        this.animProgress = 1; // 0→1 for slide
+let globalTileId=0;
+class Tile{
+    constructor(r,c,value){
+        this.id=++globalTileId;this.value=value;
+        this.row=r;this.col=c;this.fromRow=r;this.fromCol=c;
+        this.scale=0;this.mergeScale=1;this.animProgress=1;
     }
 }
 
 // ═══════════════════════════════════════════════════════
-//  GAME BOARD (one per player)
+//  GAME BOARD
 // ═══════════════════════════════════════════════════════
-class GameBoard {
-    constructor(canvas, scoreEl) {
-        this.canvas = canvas;
-        this.ctx = canvas.getContext('2d');
-        this.scoreEl = scoreEl;
-        this.tiles = [];  // flat list of Tile objects
-        this.score = 0;
-        this.won = false;
-        this.lost = false;
-        this.keepPlaying = false;
-        this.locked = false; // during animations
-        this.animating = false;
-        this.particles = [];
+class GameBoard{
+    constructor(canvas,scoreEl){
+        this.canvas=canvas;this.ctx=canvas.getContext('2d');this.scoreEl=scoreEl;
+        this.tiles=[];this.score=0;this.won=false;this.lost=false;
+        this.keepPlaying=false;this.locked=false;this.animating=false;this.particles=[];
         this.setupCanvas();
     }
-
-    setupCanvas() {
-        const resize = () => {
-            const w = this.canvas.parentElement.clientWidth;
-            const dpr = window.devicePixelRatio || 1;
-            this.canvas.width = w * dpr;
-            this.canvas.height = w * dpr;
-            this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            this.S = w;
-            this.pad = w * .035;
-            this.gap = w * .022;
-            this.ts = (w - this.pad * 2 - this.gap * 3) / 4;
+    setupCanvas(){
+        const resize=()=>{
+            const w=this.canvas.parentElement.clientWidth;
+            const dpr=window.devicePixelRatio||1;
+            this.canvas.width=w*dpr;this.canvas.height=w*dpr;
+            this.ctx.setTransform(dpr,0,0,dpr,0,0);
+            this.S=w;this.pad=w*.035;this.gap=w*.022;
+            this.tileSize=(w-this.pad*2-this.gap*3)/4;
         };
-        resize();
-        this._resize = resize;
-        window.addEventListener('resize', resize);
+        resize();this._resize=resize;
+        window.addEventListener('resize',resize);
     }
-
-    destroy() {
-        window.removeEventListener('resize', this._resize);
+    destroy(){window.removeEventListener('resize',this._resize)}
+    getGrid(){
+        const g=Array.from({length:4},()=>Array(4).fill(null));
+        for(const t of this.tiles)g[t.row][t.col]=t;return g;
     }
-
-    // Grid helpers
-    getGrid() {
-        const g = Array.from({length:4}, () => Array(4).fill(null));
-        for (const t of this.tiles) g[t.row][t.col] = t;
-        return g;
+    getValueGrid(){
+        const g=Array.from({length:4},()=>Array(4).fill(0));
+        for(const t of this.tiles)g[t.row][t.col]=t.value;return g;
     }
-
-    cellPos(r, c) {
-        return {
-            x: this.pad + c * (this.ts + this.gap),
-            y: this.pad + r * (this.ts + this.gap)
-        };
+    cellPos(r,c){return{x:this.pad+c*(this.tileSize+this.gap),y:this.pad+r*(this.tileSize+this.gap)}}
+    init(){
+        this.tiles=[];this.score=0;this.won=false;this.lost=false;
+        this.keepPlaying=false;this.locked=false;this.animating=false;this.particles=[];
+        this.spawnRandom();this.spawnRandom();this.updateScore();
     }
-
-    init() {
-        this.tiles = [];
-        this.score = 0;
-        this.won = false;
-        this.lost = false;
-        this.keepPlaying = false;
-        this.locked = false;
-        this.particles = [];
-        this.spawnRandom();
-        this.spawnRandom();
-        this.updateScore();
+    spawnRandom(){
+        const empty=[];const g=this.getGrid();
+        for(let r=0;r<4;r++)for(let c=0;c<4;c++)if(!g[r][c])empty.push({r,c});
+        if(!empty.length)return;
+        const{r,c}=empty[Math.floor(Math.random()*empty.length)];
+        const t=new Tile(r,c,Math.random()<.9?2:4);t.scale=0;this.tiles.push(t);
     }
+    updateScore(){if(this.scoreEl)this.scoreEl.textContent=this.score}
 
-    spawnRandom() {
-        const empty = [];
-        const g = this.getGrid();
-        for (let r = 0; r < 4; r++)
-            for (let c = 0; c < 4; c++)
-                if (!g[r][c]) empty.push({r, c});
-        if (!empty.length) return;
-        const {r, c} = empty[Math.floor(Math.random() * empty.length)];
-        const t = new Tile(r, c, Math.random() < .9 ? 2 : 4);
-        t.scale = 0; // will animate to 1
-        this.tiles.push(t);
-    }
+    // ─── SMOOTH REMOTE STATE UPDATE ───
+    applyRemoteState(newGrid,newScore){
+        const oldGrid=this.getValueGrid();
+        const newTiles=[];
+        const usedOld=Array.from({length:4},()=>Array(4).fill(false));
 
-    updateScore() {
-        if (this.scoreEl) this.scoreEl.textContent = this.score;
-    }
-
-    // ─── MOVE WITH ANIMATION TRACKING ───
-    move(dir) {
-        if (this.locked || this.lost) return false;
-
-        const g = this.getGrid();
-        let moved = false;
-        let mergePoints = 0;
-        const mergedTiles = new Set();
-
-        // Work in a normalized "left" direction
-        const coords = this._getTraversalOrder(dir);
-
-        // Track merges this turn to prevent double-merge
-        const alreadyMerged = new Set();
-
-        for (const {r, c} of coords) {
-            const tile = g[r][c];
-            if (!tile) continue;
-
-            let {nr, nc} = this._findFarthest(g, r, c, dir);
-
-            // Check if we can merge with the next tile
-            const {nr: mr, nc: mc} = this._nextCell(nr, nc, dir);
-            const target = (mr >= 0 && mr < 4 && mc >= 0 && mc < 4) ? g[mr][mc] : null;
-
-            if (target && target.value === tile.value && !alreadyMerged.has(target.id)) {
-                // Merge!
-                tile.fromRow = tile.row;
-                tile.fromCol = tile.col;
-                tile.row = mr;
-                tile.col = mc;
-                tile.value *= 2;
-                tile.animProgress = 0;
-                tile.mergeScale = 1.2; // will animate down
-
-                mergePoints += tile.value;
-                mergedTiles.add(target.id);
-                alreadyMerged.add(tile.id);
-
-                // Remove target from grid
-                g[mr][mc] = tile;
-                g[r][c] = null;
-                moved = true;
-            } else if (nr !== r || nc !== c) {
-                // Slide
-                tile.fromRow = tile.row;
-                tile.fromCol = tile.col;
-                tile.row = nr;
-                tile.col = nc;
-                tile.animProgress = 0;
-
-                g[nr][nc] = tile;
-                g[r][c] = null;
-                moved = true;
-            }
-        }
-
-        if (!moved) return false;
-
-        // Remove merged tiles
-        this.tiles = this.tiles.filter(t => !mergedTiles.has(t.id));
-
-        this.score += mergePoints;
-        this.updateScore();
-
-        if (mergePoints > 0) {
-            this.particles.push({
-                x: this.S / 2, y: this.S / 2,
-                text: '+' + mergePoints,
-                opacity: 1, vy: -2.5, life: 50
-            });
-        }
-
-        // Animate then spawn
-        this.locked = true;
-        this.animating = true;
-
-        return true;
-    }
-
-    finishMove() {
-        // Reset animation states
-        for (const t of this.tiles) {
-            t.animProgress = 1;
-            t.mergeScale = 1;
-        }
-
-        this.spawnRandom();
-        this.locked = false;
-        this.animating = false;
-
-        // Check win/lose
-        if (!this.won && !this.keepPlaying) {
-            for (const t of this.tiles) {
-                if (t.value === 2048) {
-                    this.won = true;
-                    return 'win';
+        // Pass 1: tiles that stayed in place
+        for(let r=0;r<4;r++){
+            for(let c=0;c<4;c++){
+                if(newGrid[r][c]>0&&oldGrid[r][c]===newGrid[r][c]){
+                    const t=new Tile(r,c,newGrid[r][c]);
+                    t.scale=1;t.animProgress=1;
+                    newTiles.push(t);usedOld[r][c]=true;
                 }
             }
         }
 
-        if (this._isGameOver()) {
-            this.lost = true;
-            return 'lose';
+        // Pass 2: moved/merged/new tiles
+        for(let r=0;r<4;r++){
+            for(let c=0;c<4;c++){
+                if(newGrid[r][c]>0&&!newTiles.find(t=>t.row===r&&t.col===c)){
+                    const val=newGrid[r][c];
+                    let fromR=r,fromC=c,found=false,isMerge=false;
+                    let bestDist=Infinity;
+
+                    // Find nearest source tile with same value
+                    for(let or2=0;or2<4;or2++){
+                        for(let oc=0;oc<4;oc++){
+                            if(!usedOld[or2][oc]&&oldGrid[or2][oc]===val){
+                                const dist=Math.abs(or2-r)+Math.abs(oc-c);
+                                if(dist<bestDist){bestDist=dist;fromR=or2;fromC=oc;found=true;}
+                            }
+                        }
+                    }
+
+                    // If not found, check merge source (half value)
+                    if(!found){
+                        bestDist=Infinity;
+                        for(let or2=0;or2<4;or2++){
+                            for(let oc=0;oc<4;oc++){
+                                if(!usedOld[or2][oc]&&oldGrid[or2][oc]===val/2){
+                                    const dist=Math.abs(or2-r)+Math.abs(oc-c);
+                                    if(dist<bestDist){bestDist=dist;fromR=or2;fromC=oc;found=true;isMerge=true;}
+                                }
+                            }
+                        }
+                    }
+
+                    const t=new Tile(r,c,val);
+                    if(found){
+                        t.fromRow=fromR;t.fromCol=fromC;
+                        t.animProgress=0;t.scale=1;
+                        usedOld[fromR][fromC]=true;
+                        if(isMerge)t.mergeScale=1.2;
+                    }else{
+                        // New tile spawn
+                        t.scale=0;t.animProgress=1;
+                    }
+                    newTiles.push(t);
+                }
+            }
         }
 
+        this.tiles=newTiles;
+        const scoreDiff=newScore-this.score;
+        this.score=newScore||0;
+        this.updateScore();
+
+        if(scoreDiff>0){
+            this.particles.push({x:this.S/2,y:this.S/2,text:'+'+scoreDiff,opacity:1,vy:-2.5,life:50});
+        }
+    }
+
+    // ─── MOVE ───
+    move(dir){
+        if(this.locked||this.lost)return false;
+        const g=this.getGrid();let moved=false;let mergePoints=0;
+        const mergedTiles=new Set();const coords=this._getTraversalOrder(dir);const alreadyMerged=new Set();
+
+        for(const{r,c}of coords){
+            const tile=g[r][c];if(!tile)continue;
+            let{nr,nc}=this._findFarthest(g,r,c,dir);
+            const{nr:mr,nc:mc}=this._nextCell(nr,nc,dir);
+            const target=(mr>=0&&mr<4&&mc>=0&&mc<4)?g[mr][mc]:null;
+
+            if(target&&target.value===tile.value&&!alreadyMerged.has(target.id)){
+                tile.fromRow=tile.row;tile.fromCol=tile.col;
+                tile.row=mr;tile.col=mc;tile.value*=2;
+                tile.animProgress=0;tile.mergeScale=1.2;
+                mergePoints+=tile.value;mergedTiles.add(target.id);alreadyMerged.add(tile.id);
+                g[mr][mc]=tile;g[r][c]=null;moved=true;
+            }else if(nr!==r||nc!==c){
+                tile.fromRow=tile.row;tile.fromCol=tile.col;
+                tile.row=nr;tile.col=nc;tile.animProgress=0;
+                g[nr][nc]=tile;g[r][c]=null;moved=true;
+            }
+        }
+
+        if(!moved)return false;
+        this.tiles=this.tiles.filter(t=>!mergedTiles.has(t.id));
+        this.score+=mergePoints;this.updateScore();
+        if(mergePoints>0){
+            this.particles.push({x:this.S/2,y:this.S/2,text:'+'+mergePoints,opacity:1,vy:-2.5,life:50});
+        }
+        this.locked=true;this.animating=true;return true;
+    }
+
+    finishMove(){
+        for(const t of this.tiles){t.animProgress=1;t.mergeScale=1;}
+        this.spawnRandom();this.locked=false;this.animating=false;
+        if(!this.won&&!this.keepPlaying){
+            for(const t of this.tiles)if(t.value===2048){this.won=true;return'win';}
+        }
+        if(this._isGameOver()){this.lost=true;return'lose';}
         return null;
     }
 
-    _getTraversalOrder(dir) {
-        const order = [];
-        for (let r = 0; r < 4; r++)
-            for (let c = 0; c < 4; c++)
-                order.push({r, c});
-
-        // Process tiles farthest in move direction first
-        if (dir === 'right') order.sort((a, b) => b.c - a.c);
-        if (dir === 'left') order.sort((a, b) => a.c - b.c);
-        if (dir === 'down') order.sort((a, b) => b.r - a.r);
-        if (dir === 'up') order.sort((a, b) => a.r - b.r);
+    _getTraversalOrder(dir){
+        const order=[];
+        for(let r=0;r<4;r++)for(let c=0;c<4;c++)order.push({r,c});
+        if(dir==='right')order.sort((a,b)=>b.c-a.c);
+        if(dir==='left')order.sort((a,b)=>a.c-b.c);
+        if(dir==='down')order.sort((a,b)=>b.r-a.r);
+        if(dir==='up')order.sort((a,b)=>a.r-b.r);
         return order;
     }
-
-    _findFarthest(g, r, c, dir) {
-        const dr = dir === 'down' ? 1 : dir === 'up' ? -1 : 0;
-        const dc = dir === 'right' ? 1 : dir === 'left' ? -1 : 0;
-        let nr = r, nc = c;
-        while (true) {
-            const nnr = nr + dr, nnc = nc + dc;
-            if (nnr < 0 || nnr >= 4 || nnc < 0 || nnc >= 4 || g[nnr][nnc]) break;
-            nr = nnr;
-            nc = nnc;
+    _findFarthest(g,r,c,dir){
+        const dr=dir==='down'?1:dir==='up'?-1:0;
+        const dc=dir==='right'?1:dir==='left'?-1:0;
+        let nr=r,nc=c;
+        while(true){const nnr=nr+dr,nnc=nc+dc;
+            if(nnr<0||nnr>=4||nnc<0||nnc>=4||g[nnr][nnc])break;nr=nnr;nc=nnc;}
+        return{nr,nc};
+    }
+    _nextCell(r,c,dir){
+        const dr=dir==='down'?1:dir==='up'?-1:0;
+        const dc=dir==='right'?1:dir==='left'?-1:0;
+        return{nr:r+dr,nc:c+dc};
+    }
+    _isGameOver(){
+        const g=this.getGrid();
+        for(let r=0;r<4;r++)for(let c=0;c<4;c++){
+            if(!g[r][c])return false;
+            if(c<3&&g[r][c].value===g[r][c+1]?.value)return false;
+            if(r<3&&g[r][c].value===g[r+1]?.[c]?.value)return false;
         }
-        return {nr, nc};
-    }
-
-    _nextCell(r, c, dir) {
-        const dr = dir === 'down' ? 1 : dir === 'up' ? -1 : 0;
-        const dc = dir === 'right' ? 1 : dir === 'left' ? -1 : 0;
-        return {nr: r + dr, nc: c + dc};
-    }
-
-    _isGameOver() {
-        const g = this.getGrid();
-        for (let r = 0; r < 4; r++)
-            for (let c = 0; c < 4; c++) {
-                if (!g[r][c]) return false;
-                if (c < 3 && g[r][c].value === g[r][c+1]?.value) return false;
-                if (r < 3 && g[r][c].value === g[r+1]?.[c]?.value) return false;
-            }
         return true;
     }
 
     // ─── RENDERING ───
-    draw(time) {
-        const ctx = this.ctx;
-        const S = this.S;
-        ctx.clearRect(0, 0, S, S);
+    draw(time){
+        const ctx=this.ctx;const S=this.S;
+        ctx.clearRect(0,0,S,S);
+        ctx.fillStyle='#0e0e16';ctx.beginPath();ctx.roundRect(0,0,S,S,14);ctx.fill();
 
-        // Board bg
-        ctx.fillStyle = '#0e0e16';
-        ctx.beginPath();
-        ctx.roundRect(0, 0, S, S, 14);
-        ctx.fill();
-
-        // Empty cells
-        for (let r = 0; r < 4; r++) {
-            for (let c = 0; c < 4; c++) {
-                const p = this.cellPos(r, c);
-                ctx.fillStyle = '#1a1a24';
-                ctx.beginPath();
-                ctx.roundRect(p.x, p.y, this.ts, this.ts, 9);
-                ctx.fill();
-            }
+        for(let r=0;r<4;r++)for(let c=0;c<4;c++){
+            const p=this.cellPos(r,c);ctx.fillStyle='#1a1a24';
+            ctx.beginPath();ctx.roundRect(p.x,p.y,this.tileSize,this.tileSize,9);ctx.fill();
         }
 
-        // Animate progress
-        let allDone = true;
-        for (const t of this.tiles) {
-            // Slide animation
-            if (t.animProgress < 1) {
-                t.animProgress = Math.min(1, t.animProgress + 0.12);
-                allDone = false;
-            }
-            // Spawn animation
-            if (t.scale < 1) {
-                t.scale = Math.min(1, t.scale + 0.1);
-                allDone = false;
-            }
-            // Merge scale
-            if (t.mergeScale > 1) {
-                t.mergeScale = Math.max(1, t.mergeScale - 0.025);
-                allDone = false;
-            }
+        let allDone=true;
+        for(const t of this.tiles){
+            if(t.animProgress<1){t.animProgress=Math.min(1,t.animProgress+0.12);allDone=false;}
+            if(t.scale<1){t.scale=Math.min(1,t.scale+0.1);allDone=false;}
+            if(t.mergeScale>1){t.mergeScale=Math.max(1,t.mergeScale-0.025);allDone=false;}
         }
 
-        // Sort: draw lower values first so merged tiles render on top
-        const sorted = [...this.tiles].sort((a, b) => a.value - b.value);
-
-        for (const t of sorted) {
-            const eased = easeOutCubic(t.animProgress);
-            const fromPos = this.cellPos(t.fromRow, t.fromCol);
-            const toPos = this.cellPos(t.row, t.col);
-
-            const x = fromPos.x + (toPos.x - fromPos.x) * eased;
-            const y = fromPos.y + (toPos.y - fromPos.y) * eased;
-            const scale = t.scale * t.mergeScale;
-
-            const style = ts(t.value);
+        const sorted=[...this.tiles].sort((a,b)=>a.value-b.value);
+        for(const t of sorted){
+            const eased=easeOutCubic(t.animProgress);
+            const fromPos=this.cellPos(t.fromRow,t.fromCol);
+            const toPos=this.cellPos(t.row,t.col);
+            const x=fromPos.x+(toPos.x-fromPos.x)*eased;
+            const y=fromPos.y+(toPos.y-fromPos.y)*eased;
+            const scale=t.scale*t.mergeScale;
+            const style=ts(t.value);
 
             ctx.save();
-            const cx = x + this.ts / 2;
-            const cy = y + this.ts / 2;
-            ctx.translate(cx, cy);
-            ctx.scale(scale, scale);
-            ctx.translate(-cx, -cy);
+            const cx=x+this.tileSize/2;const cy=y+this.tileSize/2;
+            ctx.translate(cx,cy);ctx.scale(scale,scale);ctx.translate(-cx,-cy);
+            if(t.value>=128){ctx.shadowColor=style.bg;ctx.shadowBlur=18;}
+            ctx.fillStyle=style.bg;ctx.beginPath();
+            ctx.roundRect(x,y,this.tileSize,this.tileSize,9);ctx.fill();ctx.shadowBlur=0;
 
-            // Glow for high values
-            if (t.value >= 128) {
-                ctx.shadowColor = style.bg;
-                ctx.shadowBlur = 18;
-            }
-
-            ctx.fillStyle = style.bg;
-            ctx.beginPath();
-            ctx.roundRect(x, y, this.ts, this.ts, 9);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-
-            // Text
-            const fontSize = this.ts * .36 * style.fs;
-            ctx.fillStyle = style.fg;
-            ctx.font = `800 ${fontSize}px 'JetBrains Mono',monospace`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(t.value, cx, cy + 1);
-
+            const fontSize=this.tileSize*.36*style.fs;
+            ctx.fillStyle=style.fg;
+            ctx.font=`800 ${fontSize}px 'JetBrains Mono',monospace`;
+            ctx.textAlign='center';ctx.textBaseline='middle';
+            ctx.fillText(t.value,cx,cy+1);
             ctx.restore();
         }
 
-        // Particles
-        this.particles = this.particles.filter(p => {
-            p.y += p.vy;
-            p.vy *= .97;
-            p.life--;
-            p.opacity = p.life / 50;
-            if (p.life <= 0) return false;
-            ctx.save();
-            ctx.globalAlpha = p.opacity;
-            ctx.fillStyle = '#f7b731';
-            ctx.font = `700 16px 'JetBrains Mono',monospace`;
-            ctx.textAlign = 'center';
-            ctx.fillText(p.text, p.x, p.y);
-            ctx.restore();
-            return true;
+        this.particles=this.particles.filter(p=>{
+            p.y+=p.vy;p.vy*=.97;p.life--;p.opacity=p.life/50;
+            if(p.life<=0)return false;
+            ctx.save();ctx.globalAlpha=p.opacity;ctx.fillStyle='#f7b731';
+            ctx.font=`700 16px 'JetBrains Mono',monospace`;ctx.textAlign='center';
+            ctx.fillText(p.text,p.x,p.y);ctx.restore();return true;
         });
 
-        // If animations just finished
-        if (this.animating && allDone) {
-            return this.finishMove();
-        }
-
+        if(this.animating&&allDone)return this.finishMove();
         return null;
     }
 }
 
-function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+function easeOutCubic(t){return 1-Math.pow(1-t,3)}
 
 // ═══════════════════════════════════════════════════════
 //  GAME MANAGER
 // ═══════════════════════════════════════════════════════
-let mode = 'solo';
-let boards = [];
-let gameOver = false;
-let ws = null;
-let rafId = null;
-let onlinePlayerId = null;
+let mode='solo',boards=[],gameOver=false,ws=null,rafId=null;
+let onlinePlayerId=null,opponentLost=false,iLost=false,waitingRestart=false;
 
-function startGame(m) {
-    mode = m;
-
-    if (mode === 'online') {
-        showOnlineModal();
-        return;
-    }
-
+function startGame(m){
+    mode=m;
+    if(mode==='online'){showOnlineModal();return;}
     document.getElementById('menuScreen').classList.add('hidden');
-    const gs = document.getElementById('gameScreen');
-    gs.classList.add('active');
-
+    document.getElementById('gameScreen').classList.add('active');
     buildArena();
-
-    if (mode === 'local') {
-        showCountdown(() => {
-            for (const b of boards) b.init();
-            startLoop();
-        });
-    } else {
-        for (const b of boards) b.init();
-        startLoop();
-    }
+    if(mode==='local'){
+        showCountdown(()=>{for(const b of boards)b.init();startLoop();});
+    }else{for(const b of boards)b.init();startLoop();}
 }
 
-function buildArena() {
-    const arena = document.getElementById('arena');
-    arena.innerHTML = '';
-    boards.forEach(b => b.destroy?.());
-    boards = [];
-    gameOver = false;
-    document.getElementById('resultBanner').className = 'result-banner';
+function buildArena(){
+    const arena=document.getElementById('arena');arena.innerHTML='';
+    boards.forEach(b=>b.destroy?.());boards=[];
+    gameOver=false;opponentLost=false;iLost=false;waitingRestart=false;
+    document.getElementById('resultBanner').className='result-banner';
+    document.getElementById('restartWaiting').classList.remove('active');
 
-    const players = mode === 'solo' ? [
-        {name: 'Solo', cls: 'p1', keys: 'Flèches / WASD'}
-    ] : [
-        {name: 'Joueur 1', cls: 'p1', keys: null},
-        {name: 'Joueur 2', cls: 'p2', keys: null}
-    ];
+    const players=mode==='solo'?[{name:'Solo',cls:'p1'}]:[{name:'Joueur 1',cls:'p1'},{name:'Joueur 2',cls:'p2'}];
+    const keyHints=mode==='local'?
+        ['<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>','<kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd>']:
+        ['<kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> / <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>'];
 
-    const keyHints = mode === 'local' ? [
-        '<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>',
-        '<kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd>'
-    ] : ['<kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> / <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>'];
-
-    players.forEach((p, i) => {
-        const zone = document.createElement('div');
-        zone.className = 'player-zone';
-        zone.id = `zone-${i}`;
-        zone.innerHTML = `
+    players.forEach((p,i)=>{
+        const zone=document.createElement('div');zone.className='player-zone';zone.id=`zone-${i}`;
+        zone.innerHTML=`
             <div class="player-header">
                 <div class="player-name ${p.cls}">${p.name}</div>
                 <div class="player-score" id="score-${i}">0</div>
@@ -669,334 +512,246 @@ function buildArena() {
                 <canvas id="canvas-${i}"></canvas>
                 <div class="overlay" id="overlay-${i}"></div>
             </div>
-            <div class="player-controls">${keyHints[i] || ''}</div>
-        `;
+            <div class="player-controls">${keyHints[i]||''}</div>`;
         arena.appendChild(zone);
-
-        const canvas = document.getElementById(`canvas-${i}`);
-        const scoreEl = document.getElementById(`score-${i}`);
-        const board = new GameBoard(canvas, scoreEl);
-        boards.push(board);
+        boards.push(new GameBoard(document.getElementById(`canvas-${i}`),document.getElementById(`score-${i}`)));
     });
-
     setupInput();
 }
 
-function setupInput() {
-    // Remove old listener
-    if (window._gameKeyHandler) document.removeEventListener('keydown', window._gameKeyHandler);
-
-    const dirMap = {ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',
-                    w:'up',s:'down',a:'left',d:'right',
-                    W:'up',S:'down',A:'left',D:'right'};
-
-    window._gameKeyHandler = (e) => {
-        if (gameOver) return;
-        const dir = dirMap[e.key];
-        if (!dir) {
-            if (e.key === 'r' || e.key === 'R') restartMatch();
-            return;
-        }
+function setupInput(){
+    if(window._gkh)document.removeEventListener('keydown',window._gkh);
+    const dm={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',
+        w:'up',s:'down',a:'left',d:'right',W:'up',S:'down',A:'left',D:'right'};
+    window._gkh=(e)=>{
+        if(gameOver)return;const dir=dm[e.key];
+        if(!dir){if(e.key==='r'||e.key==='R')requestRestart();return;}
         e.preventDefault();
-
-        if (mode === 'solo') {
-            boards[0]?.move(dir);
-        } else if (mode === 'local') {
-            // Player 1: WASD
-            if (['w','a','s','d','W','A','S','D'].includes(e.key)) {
-                boards[0]?.move(dir);
-            }
-            // Player 2: Arrows
-            if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
-                boards[1]?.move(dir);
-            }
-        } else if (mode === 'online') {
-            sendOnlineMove(dir);
-        }
+        if(mode==='solo')boards[0]?.move(dir);
+        else if(mode==='local'){
+            if('wassdWASD'.includes(e.key))boards[0]?.move(dir);
+            if(e.key.startsWith('Arrow'))boards[1]?.move(dir);
+        }else if(mode==='online')sendOnlineMove(dir);
     };
+    document.addEventListener('keydown',window._gkh);
 
-    document.addEventListener('keydown', window._gameKeyHandler);
-
-    // Touch/swipe for solo & P1 on mobile
-    boards.forEach((board, i) => {
-        let sx, sy;
-        board.canvas.addEventListener('touchstart', e => {
-            sx = e.touches[0].clientX;
-            sy = e.touches[0].clientY;
-        }, {passive:true});
-        board.canvas.addEventListener('touchend', e => {
-            if (gameOver) return;
-            const dx = e.changedTouches[0].clientX - sx;
-            const dy = e.changedTouches[0].clientY - sy;
-            if (Math.max(Math.abs(dx), Math.abs(dy)) < 30) return;
-            const dir = Math.abs(dx) > Math.abs(dy)
-                ? (dx > 0 ? 'right' : 'left')
-                : (dy > 0 ? 'down' : 'up');
-
-            if (mode === 'online') sendOnlineMove(dir);
-            else board.move(dir);
-        }, {passive:true});
+    boards.forEach((board,i)=>{
+        let sx,sy;
+        board.canvas.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+        board.canvas.addEventListener('touchend',e=>{
+            if(gameOver)return;
+            const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+            if(Math.max(Math.abs(dx),Math.abs(dy))<30)return;
+            const dir=Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up');
+            if(mode==='online')sendOnlineMove(dir);else board.move(dir);
+        },{passive:true});
     });
 }
 
-function startLoop() {
-    if (rafId) cancelAnimationFrame(rafId);
-    const tick = (time) => {
-        for (let i = 0; i < boards.length; i++) {
-            const result = boards[i].draw(time);
-            if (result && !gameOver) handleResult(i, result);
+function startLoop(){
+    if(rafId)cancelAnimationFrame(rafId);
+    const tick=(time)=>{
+        for(let i=0;i<boards.length;i++){
+            const result=boards[i].draw(time);
+            if(result&&!gameOver)handleResult(i,result);
         }
-        rafId = requestAnimationFrame(tick);
+        rafId=requestAnimationFrame(tick);
     };
-    rafId = requestAnimationFrame(tick);
+    rafId=requestAnimationFrame(tick);
 }
 
-function handleResult(playerIndex, result) {
-    if (mode === 'solo') {
-        if (result === 'win') {
-            showSoloBanner('win', boards[0].score);
-        } else if (result === 'lose') {
-            showSoloBanner('lose', boards[0].score);
-        }
-    } else {
-        if (result === 'win') {
-            // This player reached 2048!
-            endMatch(playerIndex);
-        } else if (result === 'lose') {
-            // Check if both lost
-            const otherIdx = playerIndex === 0 ? 1 : 0;
-            if (boards[otherIdx].lost) {
-                // Both lost, higher score wins
-                if (boards[0].score > boards[1].score) endMatch(0);
-                else if (boards[1].score > boards[0].score) endMatch(1);
-                else endMatch(-1); // tie
+function handleResult(playerIndex,result){
+    if(mode==='solo'){
+        if(result==='win')showSoloBanner('win',boards[0].score);
+        else if(result==='lose')showSoloBanner('lose',boards[0].score);
+    }else if(mode==='local'){
+        if(result==='win')endMatch(playerIndex);
+        else if(result==='lose'){
+            const other=playerIndex===0?1:0;
+            if(boards[other].lost){
+                if(boards[0].score>boards[1].score)endMatch(0);
+                else if(boards[1].score>boards[0].score)endMatch(1);
+                else endMatch(-1);
             }
-            // Otherwise the other player keeps going
+        }
+    }else if(mode==='online'){
+        if(result==='win'){
+            wsSend({type:'game_won'});endMatch(0);
+        }else if(result==='lose'){
+            iLost=true;
+            wsSend({type:'player_lost',score:boards[0].score});
+            if(opponentLost)checkBothLost();
         }
     }
 }
 
-function showSoloBanner(type, score) {
-    gameOver = true;
-    const banner = document.getElementById('resultBanner');
-    const text = document.getElementById('resultText');
-    if (type === 'win') {
-        banner.className = 'result-banner active solo-win';
-        text.textContent = `🏆 Victoire ! Score: ${score}`;
-        boards[0].keepPlaying = true;
-        boards[0].won = true;
-    } else {
-        banner.className = 'result-banner active solo-over';
-        text.textContent = `Game Over — Score: ${score}`;
+function checkBothLost(){
+    if(boards[0].score>boards[1].score)endMatch(0);
+    else if(boards[1].score>boards[0].score)endMatch(1);
+    else endMatch(-1);
+}
+
+function showSoloBanner(type,score){
+    gameOver=true;
+    const banner=document.getElementById('resultBanner'),text=document.getElementById('resultText');
+    if(type==='win'){
+        banner.className='result-banner active solo-win';
+        text.textContent=`🏆 Victoire ! Score: ${score}`;
+        boards[0].keepPlaying=true;boards[0].won=true;
+    }else{
+        banner.className='result-banner active solo-over';
+        text.textContent=`Game Over — Score: ${score}`;
     }
 }
 
-function endMatch(winnerIdx) {
-    gameOver = true;
-    const banner = document.getElementById('resultBanner');
-    const text = document.getElementById('resultText');
-
-    if (winnerIdx === -1) {
-        banner.className = 'result-banner active solo-over';
-        text.textContent = `Égalité ! ${boards[0].score} - ${boards[1].score}`;
-    } else {
-        banner.className = `result-banner active ${winnerIdx === 0 ? 'p1' : 'p2'}-wins`;
-        text.textContent = `🏆 Joueur ${winnerIdx + 1} gagne ! (${boards[winnerIdx].score} pts)`;
+function endMatch(winnerIdx){
+    gameOver=true;
+    const banner=document.getElementById('resultBanner'),text=document.getElementById('resultText');
+    const p1L=mode==='online'?'Toi':'Joueur 1',p2L=mode==='online'?'Adversaire':'Joueur 2';
+    if(winnerIdx===-1){
+        banner.className='result-banner active solo-over';
+        text.textContent=`Égalité ! ${boards[0].score} - ${boards[1].score}`;
+    }else{
+        const wL=winnerIdx===0?p1L:p2L;
+        banner.className=`result-banner active ${winnerIdx===0?'p1':'p2'}-wins`;
+        text.textContent=`🏆 ${wL} gagne ! (${boards[winnerIdx].score} pts)`;
         document.getElementById(`wrapper-${winnerIdx}`).classList.add('winner');
-        document.getElementById(`wrapper-${winnerIdx === 0 ? 1 : 0}`).classList.add('loser');
+        document.getElementById(`wrapper-${winnerIdx===0?1:0}`).classList.add('loser');
     }
 }
 
-function restartMatch() {
-    gameOver = false;
-    document.getElementById('resultBanner').className = 'result-banner';
-    document.querySelectorAll('.game-wrapper').forEach(w => {
-        w.classList.remove('winner', 'loser');
-    });
-
-    if (mode === 'local') {
-        showCountdown(() => {
-            for (const b of boards) b.init();
-        });
-    } else {
-        for (const b of boards) b.init();
+// ─── RESTART SYSTEM ───
+function requestRestart(){
+    if(mode==='online'){
+        if(waitingRestart)return;
+        waitingRestart=true;
+        document.getElementById('restartWaiting').classList.add('active');
+        wsSend({type:'restart_request'});
+    }else{
+        doRestart();
     }
 }
+function acceptRestart(){
+    document.getElementById('restartModal').classList.add('hidden');
+    wsSend({type:'restart_accept'});
+    doRestart();
+}
+function rejectRestart(){
+    document.getElementById('restartModal').classList.add('hidden');
+    wsSend({type:'restart_reject'});
+}
+function doRestart(){
+    gameOver=false;opponentLost=false;iLost=false;waitingRestart=false;
+    document.getElementById('resultBanner').className='result-banner';
+    document.getElementById('restartWaiting').classList.remove('active');
+    document.querySelectorAll('.game-wrapper').forEach(w=>w.classList.remove('winner','loser'));
+    if(mode==='local'||mode==='online'){
+        showCountdown(()=>{for(const b of boards)b.init();});
+    }else{for(const b of boards)b.init();}
+}
 
-function backToMenu() {
-    if (rafId) cancelAnimationFrame(rafId);
-    boards.forEach(b => b.destroy?.());
-    boards = [];
-    if (ws) { ws.close(); ws = null; }
+function backToMenu(){
+    if(rafId)cancelAnimationFrame(rafId);
+    boards.forEach(b=>b.destroy?.());boards=[];
+    if(ws){ws.close();ws=null;}
     document.getElementById('gameScreen').classList.remove('active');
     document.getElementById('menuScreen').classList.remove('hidden');
+    document.getElementById('restartWaiting').classList.remove('active');
 }
 
-// ─── COUNTDOWN ───
-function showCountdown(callback) {
-    const el = document.getElementById('countdown');
-    const num = document.getElementById('countdownNum');
-    el.classList.remove('hidden');
-    let count = 3;
-    num.textContent = count;
-    const iv = setInterval(() => {
-        count--;
-        if (count > 0) {
-            num.textContent = count;
-        } else if (count === 0) {
-            num.textContent = 'GO!';
-        } else {
-            clearInterval(iv);
-            el.classList.add('hidden');
-            callback();
-        }
-    }, 700);
+function showCountdown(callback){
+    const el=document.getElementById('countdown'),num=document.getElementById('countdownNum');
+    el.classList.remove('hidden');let count=3;num.textContent=count;
+    const iv=setInterval(()=>{count--;
+        if(count>0)num.textContent=count;
+        else if(count===0)num.textContent='GO!';
+        else{clearInterval(iv);el.classList.add('hidden');callback();}
+    },700);
 }
 
 // ═══════════════════════════════════════════════════════
-//  ONLINE MULTIPLAYER (WebSocket)
+//  ONLINE MULTIPLAYER
 // ═══════════════════════════════════════════════════════
-function showOnlineModal() {
+function wsSend(obj){if(ws&&ws.readyState===WebSocket.OPEN)ws.send(JSON.stringify(obj))}
+
+function showOnlineModal(){
     document.getElementById('onlineModal').classList.remove('hidden');
-    document.getElementById('wsError').textContent = '';
-    document.getElementById('wsStatus').textContent = 'Prêt — crée ou rejoins une room';
+    document.getElementById('wsError').textContent='';
+    document.getElementById('wsStatus').textContent='Prêt — crée ou rejoins une room';
 }
-
-function closeOnlineModal() {
+function closeOnlineModal(){
     document.getElementById('onlineModal').classList.add('hidden');
-    if (ws) { ws.close(); ws = null; }
+    if(ws){ws.close();ws=null;}
+}
+function connectWS(callback){
+    const proto=window.location.protocol==='https:'?'wss:':'ws:';
+    const url=`${proto}//${window.location.host}/ws`;
+    document.getElementById('wsStatus').textContent='Connexion...';
+    document.getElementById('wsError').textContent='';
+    ws=new WebSocket(url);
+    ws.onopen=()=>{document.getElementById('wsStatus').textContent='Connecté ✓';callback()};
+    ws.onerror=()=>{document.getElementById('wsError').textContent='Impossible de se connecter au serveur. Lance le serveur Go !'};
+    ws.onclose=()=>{if(!gameOver)document.getElementById('wsStatus').textContent='Déconnecté'};
+    ws.onmessage=(e)=>{handleWSMessage(JSON.parse(e.data))};
+}
+function createRoom(){connectWS(()=>{wsSend({type:'create'})})}
+function joinRoom(){
+    const code=document.getElementById('roomInput').value.trim().toUpperCase();
+    if(!code){document.getElementById('wsError').textContent='Entre un code room';return;}
+    connectWS(()=>{wsSend({type:'join',room:code})});
 }
 
-function connectWS(callback) {
-    // ──────────────────────────────────────────────────────────
-    // ⚡ CHANGE THIS to your Railway/Render/Fly.io URL in prod
-    const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const url = `${proto}//${window.location.host}/ws`;
-    document.getElementById('wsStatus').textContent = 'Connexion...';
-    document.getElementById('wsError').textContent = '';
-
-    ws = new WebSocket(url);
-    ws.onopen = () => {
-        document.getElementById('wsStatus').textContent = 'Connecté ✓';
-        callback();
-    };
-    ws.onerror = () => {
-        document.getElementById('wsError').textContent = 'Impossible de se connecter au serveur. Lance le serveur Go !';
-    };
-    ws.onclose = () => {
-        if (!gameOver) document.getElementById('wsStatus').textContent = 'Déconnecté';
-    };
-    ws.onmessage = (e) => {
-        const msg = JSON.parse(e.data);
-        handleWSMessage(msg);
-    };
-}
-
-function createRoom() {
-    connectWS(() => {
-        ws.send(JSON.stringify({type: 'create'}));
-    });
-}
-
-function joinRoom() {
-    const code = document.getElementById('roomInput').value.trim().toUpperCase();
-    if (!code) {
-        document.getElementById('wsError').textContent = 'Entre un code room';
-        return;
-    }
-    connectWS(() => {
-        ws.send(JSON.stringify({type: 'join', room: code}));
-    });
-}
-
-function sendOnlineMove(dir) {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-        // Apply locally
-        const moved = boards[0]?.move(dir);
-        // Send state to server so opponent sees our grid
-        if (moved) {
-            // Wait for animation to finish then send state
-            setTimeout(() => {
-                const grid = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
-                for (const t of boards[0].tiles) {
-                    grid[t.row][t.col] = t.value;
-                }
-                ws.send(JSON.stringify({
-                    type: 'state_update',
-                    grid: grid,
-                    score: boards[0].score
-                }));
-                // Check if we won
-                for (const t of boards[0].tiles) {
-                    if (t.value === 2048 && !boards[0].keepPlaying) {
-                        ws.send(JSON.stringify({type: 'game_won'}));
-                        break;
-                    }
-                }
-            }, 200);
-        }
+function sendOnlineMove(dir){
+    if(!ws||ws.readyState!==WebSocket.OPEN)return;
+    const moved=boards[0]?.move(dir);
+    if(moved){
+        setTimeout(()=>{
+            wsSend({type:'state_update',grid:boards[0].getValueGrid(),score:boards[0].score});
+        },200);
     }
 }
 
-function handleWSMessage(msg) {
-    switch (msg.type) {
-        case 'room_created':
-            document.getElementById('wsStatus').textContent = `Room: ${msg.room} — En attente d'un adversaire...`;
-            document.getElementById('roomInput').value = msg.room;
-            onlinePlayerId = msg.player_id;
-            break;
-
-        case 'room_joined':
-            onlinePlayerId = msg.player_id;
-            document.getElementById('wsStatus').textContent = `Room: ${msg.room} — Connecté !`;
-            break;
-
-        case 'game_start':
+function handleWSMessage(msg){
+    switch(msg.type){
+        case'room_created':
+            document.getElementById('wsStatus').textContent=`Room: ${msg.room} — En attente d'un adversaire...`;
+            document.getElementById('roomInput').value=msg.room;
+            onlinePlayerId=msg.player_id;break;
+        case'room_joined':
+            onlinePlayerId=msg.player_id;
+            document.getElementById('wsStatus').textContent=`Room: ${msg.room} — Connecté !`;break;
+        case'game_start':
             document.getElementById('onlineModal').classList.add('hidden');
-            mode = 'online';
+            mode='online';
             document.getElementById('menuScreen').classList.add('hidden');
             document.getElementById('gameScreen').classList.add('active');
             buildArena();
-            // Label players
-            const p1Name = document.querySelector('#zone-0 .player-name');
-            const p2Name = document.querySelector('#zone-1 .player-name');
-            if (p1Name) p1Name.textContent = 'Toi';
-            if (p2Name) p2Name.textContent = 'Adversaire';
-            showCountdown(() => {
-                for (const b of boards) b.init();
-                startLoop();
-            });
-            break;
-
-        case 'opponent_state':
-            // Update opponent's board display
-            if (boards[1] && msg.grid) {
-                // Rebuild opponent tiles from grid
-                boards[1].tiles = [];
-                for (let r = 0; r < 4; r++)
-                    for (let c = 0; c < 4; c++)
-                        if (msg.grid[r][c] > 0)
-                            boards[1].tiles.push(new Tile(r, c, msg.grid[r][c]));
-                boards[1].tiles.forEach(t => { t.scale = 1; t.animProgress = 1; });
-                boards[1].score = msg.score || 0;
-                boards[1].updateScore();
-            }
-            break;
-
-        case 'game_over':
-            if (msg.winner === onlinePlayerId) {
-                endMatch(0);
-            } else {
-                endMatch(1);
-            }
-            break;
-
-        case 'error':
-            document.getElementById('wsError').textContent = msg.message;
-            break;
+            const p1n=document.querySelector('#zone-0 .player-name');
+            const p2n=document.querySelector('#zone-1 .player-name');
+            if(p1n)p1n.textContent='Toi';if(p2n)p2n.textContent='Adversaire';
+            showCountdown(()=>{for(const b of boards)b.init();startLoop();});break;
+        case'opponent_state':
+            if(boards[1]&&msg.grid)boards[1].applyRemoteState(msg.grid,msg.score);break;
+        case'opponent_lost':
+            opponentLost=true;
+            // Update opponent score from message
+            if(msg.score!==undefined&&boards[1]){boards[1].score=msg.score;boards[1].updateScore();}
+            if(iLost)checkBothLost();break;
+        case'game_over':
+            if(msg.winner===onlinePlayerId)endMatch(0);else endMatch(1);break;
+        case'restart_request':
+            document.getElementById('restartModal').classList.remove('hidden');break;
+        case'restart_accept':
+            waitingRestart=false;
+            document.getElementById('restartWaiting').classList.remove('active');
+            doRestart();break;
+        case'restart_reject':
+            waitingRestart=false;
+            document.getElementById('restartWaiting').classList.remove('active');break;
+        case'error':
+            document.getElementById('wsError').textContent=msg.message;break;
     }
 }
-
 </script>
 </body>
 </html>
